@@ -17,29 +17,31 @@
 
       pkgsForSystem = { system, ... }: import nixpkgs { inherit system; };
 
-      username = builtins.getEnv "USER";
-      homeDirectory = "/home/${username}";
-
-      configData = {
-        inherit username homeDirectory;
+      utils = import ./utils.nix { inherit lib; };
+      definitions = import ./definitions.nix { inherit lib; };
+      common = {
+        inherit definitions utils;
       };
     in
     {
       homeConfigurations = {
         wsl = home-manager.lib.homeManagerConfiguration {
+
           pkgs = pkgsForSystem {
-            system = "x86_64-linux";
+            inherit (definitions) system;
           };
 
           extraSpecialArgs = (
-            configData
-            # other args go here
-            // {
+            lib.attrsets.recursiveUpdate common {
+              definitions = {
+                profile = "wsl";
+              };
             }
           );
 
           modules = [
             ./home.nix
+            ./profiles/wsl
           ];
         };
       };
