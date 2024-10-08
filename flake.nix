@@ -18,7 +18,7 @@
       pkgsForSystem = { system, ... }: import nixpkgs { inherit system; };
 
       utils = import ./utils.nix { inherit lib; };
-      definitions = import ./definitions.nix { inherit lib; };
+      definitions = import ./definitions.nix { inherit lib utils; };
       common = {
         inherit definitions utils;
       };

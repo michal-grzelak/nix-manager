@@ -1,6 +1,6 @@
 { ... }:
 {
   imports = [
-    ../../presets/nix-lib
+    ../../presets/terminal
   ];
 }

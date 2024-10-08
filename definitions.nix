@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, utils, ... }:
 let
   username = builtins.getEnv "USER";
   homeDirectory = builtins.getEnv "HOME";
@@ -33,6 +33,8 @@ let
     macPc
   ];
 
+  # setup shell you want to use here
+  shellToUse = "fish";
 in
 # fail at unsupported system to avoid issues
 assert lib.asserts.assertOneOf "system" system supportedSystems;
@@ -44,4 +46,5 @@ assert lib.asserts.assertOneOf "system" system supportedSystems;
     isLinux
     isMac
     ;
+  inherit shellToUse;
 }
