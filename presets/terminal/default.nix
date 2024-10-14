@@ -12,5 +12,11 @@ in
     ../../apps/shells
     ../../apps/starship
     ../../apps/mise
+    ../../apps/zoxide
+    ../../apps/eza
+    ../../apps/fzf
+    ../../apps/bat
+    ../../apps/ripgrep
+    ../../apps/tmux
   ];
 }

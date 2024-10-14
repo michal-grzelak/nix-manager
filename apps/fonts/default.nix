@@ -9,7 +9,6 @@ in
 {
   fonts = {
     fontconfig.enable = true;
-
   };
 
   home = {

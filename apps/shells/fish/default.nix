@@ -9,9 +9,16 @@ in
 {
   programs.fish = {
     enable = true;
+
     shellInit = ''
+      # disable greeting
       set -U fish_greeting;
     '';
+    interactiveShellInit = ''
+      #  source batman (using batman plugin as man pager)
+      batman --export-env | source
+    '';
+
     plugins = [
       # this plugin sets nix env on path in fish shell
       {
