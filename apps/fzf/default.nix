@@ -11,8 +11,9 @@ in
     enable = true;
 
     defaultOptions = [
-      "--color fg:-1,bg:-1,hl:230,fg+:3,bg+:233,hl+:229"
-      "--color info:150,prompt:110,spinner:150,pointer:167,marker:174"
+      "--color=dark"
+      "--color=fg:-1,bg:-1,hl:#5fff87,fg+:-1,bg+:-1,hl+:#ffaf5f"
+      "--color=info:#af87ff,prompt:#5fff87,pointer:#ff87d7,marker:#ff87d7,spinner:#ff87d7"
     ];
 
     tmux = {

@@ -11,6 +11,8 @@ in
     ../../apps/fonts
     ../../apps/shells
     ../../apps/starship
+    ../../apps/ssh
+    ../../apps/git
     ../../apps/mise
     ../../apps/zoxide
     ../../apps/eza
@@ -18,5 +20,6 @@ in
     ../../apps/bat
     ../../apps/ripgrep
     ../../apps/tmux
+    ../../apps/nnn
   ];
 }

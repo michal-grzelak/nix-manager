@@ -15,8 +15,7 @@ in
       set -U fish_greeting;
     '';
     interactiveShellInit = ''
-      #  source batman (using batman plugin as man pager)
-      batman --export-env | source
+      # test
     '';
 
     plugins = [
