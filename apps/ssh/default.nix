@@ -12,6 +12,8 @@ in
 
     addKeysToAgent = "true";
 
+    includes = [ "./config.local" ];
+
     matchBlocks = {
       "mikrus-allure" = {
         hostname = "srv27.mikr.us";

@@ -20,10 +20,11 @@ in
     themes = {
       dracula = {
         src = pkgs.fetchFromGitHub {
+          name = "apps-bat-Dracula.tmTheme";
           owner = "dracula";
           repo = "sublime"; # Bat uses sublime syntax for its themes
           rev = "v1.4.3";
-          sha256 = "019hfl4zbn4vm4154hh3bwk6hm7bdxbr1hdww83nabxwjn99ndhv";
+          hash = "sha256-9xkldXV3UuaF5XhMyidLSN+ZCgjboiyy1PPA8E3sSnY=";
         };
         file = "Dracula.tmTheme";
       };
