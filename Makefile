@@ -1,3 +1,11 @@
+.PHONY: nix-install
+nix-install:
+	bash ./scripts/install.sh
+
+.PHONY: nix-upgrade
+nix-upgrade:
+	sudo -i nix upgrade-nix
+
 .PHONY: clean-force
 clean-force:
 	nix-collect-garbage -d
