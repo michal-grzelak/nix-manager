@@ -9,10 +9,12 @@ nix-upgrade:
 .PHONY: clean-force
 clean-force:
 	nix-collect-garbage -d
+	nix-store --optimise
 
 .PHONY: clean
 clean:
 	nix-collect-garbage --delete-older-than 30d
+	nix-store --optimise
 
 .PHONY: update
 update:
