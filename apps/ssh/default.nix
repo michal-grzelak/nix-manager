@@ -12,7 +12,7 @@ in
 
     addKeysToAgent = "true";
 
-    includes = [ "./config.local" ];
+    includes = [ "./ssh.config" ];
   };
 
   home = {
