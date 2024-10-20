@@ -20,7 +20,6 @@ clean:
 update:
 	nix-channel --update
 	nix flake update
-	make clean
 
 .PHONY: wsl
 wsl:

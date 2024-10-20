@@ -22,6 +22,13 @@ in
     gc = {
       automatic = true;
       options = "--delete-older-than 30d";
+      frequency = "weekly";
+    };
+  };
+
+  systemd = {
+    user = {
+      enable = true;
     };
   };
 }

@@ -19,6 +19,7 @@ in
     ../../apps/fzf
     ../../apps/bat
     ../../apps/ripgrep
+    ../../apps/fd
     ../../apps/tmux
     ../../apps/nnn
   ];
