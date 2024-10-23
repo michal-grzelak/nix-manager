@@ -12,8 +12,6 @@ in
     ../../apps/shells
     ../../apps/starship
     ../../apps/ssh
-    ../../apps/git
-    ../../apps/mise
     ../../apps/zoxide
     ../../apps/eza
     ../../apps/fzf

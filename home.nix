@@ -31,4 +31,8 @@ in
       enable = true;
     };
   };
+
+  xdg = {
+    enable = true;
+  };
 }
