@@ -21,7 +21,7 @@ in
     extraConfig = {
       core =
         {
-          editor = "code -n --wait";
+          editor = "nvim";
           excludesFile = "~/.gitignore";
           whitespace = "-trailing-space";
         }
@@ -50,14 +50,14 @@ in
       difftool = {
         prompt = false;
         code = {
-          cmd = "code -n --wait --merge $REMOTE $LOCAL";
+          cmd = "code -n --wait --diff $LOCAL $REMOTE";
         };
       };
       mergetool = {
         trustExitCode = true;
         keepBackup = false;
         code = {
-          cmd = "code -n --wait --merge $REMOTE $LOCAL $BASE $MERGED";
+          cmd = "code -n --wait --merge $LOCAL $REMOTE $BASE $MERGED";
         };
       };
       filter = {
@@ -65,7 +65,7 @@ in
           clean = "git-lfs clean -- %f";
           smudge = "git-lfs smudge -- %f";
           process = "git-lfs filter-process";
-          required = "true";
+          required = true;
         };
       };
       pack = {
