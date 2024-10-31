@@ -3,6 +3,7 @@ let
   username = builtins.getEnv "USER";
   homeDirectory = builtins.getEnv "HOME";
   system = builtins.currentSystem;
+  rootDir = builtins.getEnv "PWD";
 
   linuxArm = "aarch64-linux";
   linuxPc = "x86_64-linux";
@@ -39,7 +40,12 @@ in
 # fail at unsupported system to avoid issues
 assert lib.asserts.assertOneOf "system" system supportedSystems;
 {
-  inherit username homeDirectory system;
+  inherit
+    username
+    homeDirectory
+    system
+    rootDir
+    ;
   inherit
     isArm
     isPc

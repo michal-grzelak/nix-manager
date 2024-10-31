@@ -10,6 +10,9 @@
       "lua_ls": {
         "enabled": true
       }
+    },
+    "import": {
+      "vscode": false
     }
   }
 }

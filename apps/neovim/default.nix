@@ -1,7 +1,9 @@
 {
   pkgs,
+  lib,
   definitions,
   utils,
+  config,
   ...
 }:
 let
@@ -19,8 +21,7 @@ in
   xdg = {
     configFile = {
       "nvim" = {
-        source = ./config;
-        recursive = true;
+        source = config.lib.file.mkOutOfStoreSymlink "${definitions.rootDir}/apps/neovim/config";
       };
     };
   };

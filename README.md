@@ -1,7 +1,9 @@
 # Description
+
 Environment and home setup using Nix.
 
 ## Structure
+
 - `flake.nix` - main entrypoint; base setup of Nix and home-manager profiles; profiles source `profiles/<profile>` dirs
 - `home.nix` - minimal shared setup of home-manager
 - `definitions.nix` - configuration of global variables defining the system

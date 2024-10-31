@@ -38,13 +38,14 @@ in
       merge = {
         tool = "code";
         autoStash = true;
+        conflictstyle = "diff3";
       };
       rebase = {
         autoStash = true;
       };
       diff = {
-        guitool = "code";
-        tool = "code";
+        tool = "delta";
+        colorMoved = "default";
       };
       difftool = {
         prompt = false;
@@ -125,6 +126,16 @@ in
       # List tags with all messages
       tags = "tag -n99";
     };
+
+    delta = {
+      enable = true;
+      options = {
+        navigate = true;
+        side-by-side = true;
+        line-numbers = true;
+        hyperlinks = true;
+      };
+    };
   };
 
   programs.lazygit = {
@@ -134,6 +145,12 @@ in
         showFileIcons = true;
         nerdFontsVersion = "3";
         windowSize = "half";
+      };
+      git = {
+        paging = {
+          colorArg = "always";
+          pager = "delta --paging=never --hyperlinks-file-link-format=\"lazygit-edit://{path}:{line}\"";
+        };
       };
     };
   };
