@@ -15,6 +15,7 @@ in
     extraPackages = with pkgs.bat-extras; [
       # display man with bat
       batman
+      batgrep
     ];
 
     themes = {
@@ -36,6 +37,6 @@ in
   };
 
   home.shellAliases = {
-    cat = "bat";
+    cat = "bat --paging=never";
   };
 }

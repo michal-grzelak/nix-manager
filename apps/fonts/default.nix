@@ -13,14 +13,10 @@ in
 
   home = {
     packages = with pkgs; [
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "Hack"
-          "SourceCodePro"
-          "Terminus"
-        ];
-      })
+      nerd-fonts.fira-code
+      nerd-fonts.hack
+      nerd-fonts.sauce-code-pro
+      nerd-fonts.terminess-ttf
     ];
   };
 }

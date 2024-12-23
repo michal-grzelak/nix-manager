@@ -12,5 +12,6 @@ in
     ../../apps/git
     ../../apps/mise
     ../../apps/neovim
+    ../../apps/gh
   ];
 }
