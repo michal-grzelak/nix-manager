@@ -44,6 +44,26 @@
             ./profiles/wsl
           ];
         };
+
+        mac = home-manager.lib.homeManagerConfiguration {
+
+          pkgs = pkgsForSystem {
+            inherit (definitions) system;
+          };
+
+          extraSpecialArgs = (
+            lib.attrsets.recursiveUpdate common {
+              definitions = {
+                profile = "mac";
+              };
+            }
+          );
+
+          modules = [
+            ./home.nix
+            ./profiles/mac
+          ];
+        };
       };
     };
 }

@@ -21,7 +21,7 @@ in
     extraConfig = {
       core =
         {
-          editor = "nvim";
+          editor = "code -n --wait";
           excludesFile = "~/.gitignore";
           whitespace = "-trailing-space";
         }

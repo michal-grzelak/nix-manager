@@ -1,6 +1,7 @@
 {
   definitions,
   utils,
+  lib,
   ...
 }:
 let
@@ -26,7 +27,7 @@ in
     };
   };
 
-  systemd = {
+  systemd = {}  // lib.attrsets.optionalAttrs (definitions.isLinux == true) {
     user = {
       enable = true;
     };
