@@ -15,55 +15,35 @@
     let
       lib = nixpkgs.lib;
 
-      pkgsForSystem = { system, ... }: import nixpkgs { inherit system; };
-
-      utils = import ./utils.nix { inherit lib; };
-      definitions = import ./definitions.nix { inherit lib utils; };
+      definitions = import ./definitions.nix { inherit lib; };
+      utils = import ./utils.nix { inherit lib nixpkgs definitions; };
       common = {
         inherit definitions utils;
       };
+
+      configureHome =
+        { profile }:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = utils.pkgsForCurrentSystem { };
+
+          extraSpecialArgs = (
+            lib.attrsets.recursiveUpdate common {
+              definitions = {
+                profile = profile;
+              };
+            }
+          );
+
+          modules = [
+            ./home.nix
+            ./profiles/${profile}
+          ];
+        };
     in
     {
       homeConfigurations = {
-        wsl = home-manager.lib.homeManagerConfiguration {
-
-          pkgs = pkgsForSystem {
-            inherit (definitions) system;
-          };
-
-          extraSpecialArgs = (
-            lib.attrsets.recursiveUpdate common {
-              definitions = {
-                profile = "wsl";
-              };
-            }
-          );
-
-          modules = [
-            ./home.nix
-            ./profiles/wsl
-          ];
-        };
-
-        mac = home-manager.lib.homeManagerConfiguration {
-
-          pkgs = pkgsForSystem {
-            inherit (definitions) system;
-          };
-
-          extraSpecialArgs = (
-            lib.attrsets.recursiveUpdate common {
-              definitions = {
-                profile = "mac";
-              };
-            }
-          );
-
-          modules = [
-            ./home.nix
-            ./profiles/mac
-          ];
-        };
+        wsl = configureHome { profile = "wsl"; };
+        mac = configureHome { profile = "mac"; };
       };
     };
 }

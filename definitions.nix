@@ -1,4 +1,4 @@
-{ lib, utils, ... }:
+{ lib, ... }:
 let
   username = builtins.getEnv "USER";
   homeDirectory = builtins.getEnv "HOME";
