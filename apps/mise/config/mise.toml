@@ -1,0 +1,15 @@
+[tools]
+node = "latest"
+pnpm = "latest"
+python = "latest"
+usage = "latest"
+rust = "latest"
+just = "latest"
+lua = "latest"
+deno = "latest"
+
+[settings]
+experimental = true
+
+always_keep_download = false
+always_keep_install = false

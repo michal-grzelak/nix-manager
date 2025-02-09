@@ -9,10 +9,19 @@ in
 {
   programs.mise = {
     enable = true;
+  };
 
-    settings = {
-      always_keep_download = false;
-      always_keep_install = false;
+  xdg = {
+    configFile = {
+      "mise/conf.d" = {
+        source = "${definitions.rootDir}/apps/mise/config";
+
+        # TODO: doesn't have access to system packages
+        # onChange = ''
+        #   ${pkgs.mise}/bin/mise i
+        #   ${pkgs.mise}/bin/mise up
+        # '';
+      };
     };
   };
 }
