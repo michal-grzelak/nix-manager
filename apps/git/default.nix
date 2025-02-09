@@ -1,11 +1,11 @@
 {
   pkgs,
-  definitions,
-  utils,
+  common,
   lib,
   ...
 }:
 let
+  inherit (common) definitions utils;
 in
 {
   programs.git = {

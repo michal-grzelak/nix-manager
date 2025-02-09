@@ -26,13 +26,15 @@
         home-manager.lib.homeManagerConfiguration {
           pkgs = utils.pkgsForCurrentSystem { };
 
-          extraSpecialArgs = (
-            lib.attrsets.recursiveUpdate common {
-              definitions = {
-                profile = profile;
-              };
-            }
-          );
+          extraSpecialArgs = {
+            common = (
+              lib.attrsets.recursiveUpdate common {
+                definitions = {
+                  profile = profile;
+                };
+              }
+            );
+          };
 
           modules = [
             ./home.nix

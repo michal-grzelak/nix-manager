@@ -1,12 +1,12 @@
 {
   pkgs,
   lib,
-  definitions,
-  utils,
+  common,
   config,
   ...
 }:
 let
+  inherit (common) definitions utils;
 in
 {
   programs.neovim = {

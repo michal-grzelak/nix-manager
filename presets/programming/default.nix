@@ -1,7 +1,6 @@
 {
   pkgs,
-  definitions,
-  utils,
+  common,
   ...
 }:
 let

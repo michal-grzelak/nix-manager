@@ -1,10 +1,10 @@
 {
   pkgs,
-  definitions,
-  utils,
+  common,
   ...
 }:
 let
+  inherit (common) definitions utils;
 in
 {
   programs.fish = {

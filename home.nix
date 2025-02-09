@@ -1,10 +1,10 @@
 {
-  definitions,
-  utils,
   lib,
+  common,
   ...
 }:
 let
+  inherit (common) definitions utils;
 in
 {
   programs.home-manager.enable = utils.print definitions true;
@@ -27,11 +27,13 @@ in
     };
   };
 
-  systemd = {}  // lib.attrsets.optionalAttrs (definitions.isLinux == true) {
-    user = {
-      enable = true;
+  systemd =
+    { }
+    // lib.attrsets.optionalAttrs (definitions.isLinux == true) {
+      user = {
+        enable = true;
+      };
     };
-  };
 
   xdg = {
     enable = true;
