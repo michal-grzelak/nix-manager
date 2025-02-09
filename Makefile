@@ -1,4 +1,4 @@
-.PHONY: nix-install nix-upgrade clean-force clean update wsl
+.PHONY: nix-install nix-upgrade clean-force clean nix-update wsl max
 
 nix-install:
 	bash ./scripts/install.sh
@@ -14,7 +14,7 @@ clean:
 	nix-collect-garbage --delete-older-than 30d
 	nix-store --optimise
 
-update:
+nix-update:
 	nix-channel --update
 	nix flake update
 
