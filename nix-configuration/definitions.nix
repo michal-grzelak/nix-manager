@@ -4,6 +4,7 @@ let
   homeDirectory = builtins.getEnv "HOME";
   system = builtins.currentSystem;
   rootDir = builtins.getEnv "PWD";
+  nixConfigDir = "${rootDir}/nix-configuration";
 
   linuxArm = "aarch64-linux";
   linuxPc = "x86_64-linux";
@@ -45,6 +46,7 @@ assert lib.asserts.assertOneOf "system" system supportedSystems;
     homeDirectory
     system
     rootDir
+    nixConfigDir
     ;
   inherit
     isArm

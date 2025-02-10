@@ -14,7 +14,7 @@ in
   xdg = {
     configFile = {
       "mise/conf.d" = {
-        source = "${definitions.rootDir}/apps/mise/config";
+        source = "${definitions.nixConfigDir}/apps/mise/config";
 
         # TODO: doesn't have access to system packages
         # onChange = ''

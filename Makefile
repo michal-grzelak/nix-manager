@@ -19,7 +19,7 @@ nix-update:
 	nix flake update
 
 wsl:
-	home-manager switch --flake .#wsl --show-trace --impure
+	home-manager switch --flake ./nix-configuration#wsl --show-trace --impure
 
 mac:
-	home-manager switch --flake .#mac --show-trace --impure
+	home-manager switch --flake ./nix-configuration#mac --show-trace --impure

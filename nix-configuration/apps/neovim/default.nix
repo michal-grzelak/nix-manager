@@ -21,7 +21,7 @@ in
   xdg = {
     configFile = {
       "nvim" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${definitions.rootDir}/apps/neovim/config";
+        source = config.lib.file.mkOutOfStoreSymlink "${definitions.nixConfigDir}/apps/neovim/config";
       };
     };
   };
