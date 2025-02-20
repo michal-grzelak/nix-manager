@@ -1,6 +1,7 @@
 {
   pkgs,
   common,
+  lib,
   ...
 }:
 let
@@ -14,7 +15,7 @@ in
   xdg = {
     configFile = {
       "mise/conf.d" = {
-        source = "${definitions.nixConfigDir}/apps/mise/config";
+        source = ./config;
 
         # TODO: doesn't have access to system packages
         # onChange = ''
