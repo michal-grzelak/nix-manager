@@ -19,5 +19,6 @@ in
     ../../apps/fd
     ../../apps/tmux
     ../../apps/nnn
+    ../../apps/yt-dlp
   ];
 }
