@@ -12,5 +12,6 @@ in
     ../../apps/mise
     ../../apps/neovim
     ../../apps/gh
+    ../../apps/mongo-tools
   ];
 }
