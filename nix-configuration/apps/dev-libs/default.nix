@@ -10,5 +10,6 @@ in
   imports = [
     ./nix-lib
     ./latex
+    ./ngrok
   ];
 }

@@ -8,6 +8,11 @@ let
 in
 {
   home.packages = with pkgs; [
-    ngrok
+    # formatter
+    nixfmt-rfc-style
+
+    # language servers
+    nil
+    nixd
   ];
 }
