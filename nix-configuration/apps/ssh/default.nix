@@ -9,10 +9,15 @@ in
 {
   programs.ssh = {
     enable = true;
-
-    addKeysToAgent = "true";
-
+    enableDefaultConfig = false;
     includes = [ "./ssh.config" ];
+
+    matchBlocks = {
+      "*" = {
+        addKeysToAgent = "confirm";
+      };
+    };
+
   };
 
   home = {

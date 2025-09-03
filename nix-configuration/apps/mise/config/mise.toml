@@ -13,3 +13,13 @@ experimental = true
 
 always_keep_download = false
 always_keep_install = false
+
+idiomatic_version_file_enable_tools = [
+    'node',
+    'java',
+    'python',
+    'yarn',
+    'ruby',
+    'packer',
+    'terraform',
+]

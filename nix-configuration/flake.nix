@@ -30,7 +30,7 @@
             common = (
               lib.attrsets.recursiveUpdate common {
                 definitions = {
-                  profile = profile;
+                  inherit profile;
                 };
               }
             );
