@@ -11,8 +11,14 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }:
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
+      inherit (self) outputs;
       lib = nixpkgs.lib;
 
       definitions = import ./definitions.nix { inherit lib; };
@@ -27,6 +33,7 @@
           pkgs = utils.pkgsForCurrentSystem { };
 
           extraSpecialArgs = {
+            inherit inputs outputs;
             common = (
               lib.attrsets.recursiveUpdate common {
                 definitions = {
@@ -37,6 +44,7 @@
           };
 
           modules = [
+            ./base.nix
             ./home.nix
             ./profiles/${profile}
           ];

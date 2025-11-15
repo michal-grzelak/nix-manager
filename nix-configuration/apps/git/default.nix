@@ -18,14 +18,13 @@ in
       "**/.vscode/.history"
     ];
 
-    extraConfig = {
-      core =
-        {
-          editor = "code -n --wait";
-          excludesFile = "~/.gitignore";
-          whitespace = "-trailing-space";
-        }
-        //
+    settings = {
+      core = {
+        editor = "code -n --wait";
+        excludesFile = "~/.gitignore";
+        whitespace = "-trailing-space";
+      }
+      //
         # map windows ssh for WSL (1Password integration)
         (lib.attrsets.optionalAttrs (definitions.profile == "wsl") { sshCommand = "ssh.exe"; });
       push = {
@@ -84,56 +83,46 @@ in
       color = {
         ui = "auto";
       };
-    };
 
-    aliases = {
-      # Keep original date after rebase
-      rebase-date = "rebase --committer-date-is-author-date";
+      alias = {
+        # Keep original date after rebase
+        rebase-date = "rebase --committer-date-is-author-date";
 
-      # Commit
-      c = "commit";
+        # Commit
+        c = "commit";
 
-      # Commit
-      cm = "commit -m";
+        # Commit
+        cm = "commit -m";
 
-      # prune non-existing branches
-      prune = "fetch --prune --progress -v";
+        # prune non-existing branches
+        prune = "fetch --prune --progress -v";
 
-      # list unused branches
-      ubranch = "branch --list --format '%(if:equals=[gone])%(upstream:track)%(then)%(refname)%(end)'";
+        # list unused branches
+        ubranch = "branch --list --format '%(if:equals=[gone])%(upstream:track)%(then)%(refname)%(end)'";
 
-      # git push without overwriting someone's changes
-      push-lease = "push --force-with-lease";
+        # git push without overwriting someone's changes
+        push-lease = "push --force-with-lease";
 
-      # Safer pulls; don't do anything other than a fast forward on merge
-      pull = "pull --ff-only";
+        # Safer pulls; don't do anything other than a fast forward on merge
+        pull = "pull --ff-only";
 
-      # Remove file(s) from Git but not from disk
-      untrack = "rm --cache --";
+        # Remove file(s) from Git but not from disk
+        untrack = "rm --cache --";
 
-      # Continue rebase
-      crebase = "rebase --continue";
+        # Continue rebase
+        crebase = "rebase --continue";
 
-      # Abort rebase
-      arebase = "rebase --abort";
+        # Abort rebase
+        arebase = "rebase --abort";
 
-      # Continue merge
-      cmerge = "merge --continue";
+        # Continue merge
+        cmerge = "merge --continue";
 
-      # Checkout
-      co = "checkout";
+        # Checkout
+        co = "checkout";
 
-      # List tags with all messages
-      tags = "tag -n99";
-    };
-
-    delta = {
-      enable = true;
-      options = {
-        navigate = true;
-        side-by-side = true;
-        line-numbers = true;
-        hyperlinks = true;
+        # List tags with all messages
+        tags = "tag -n99";
       };
     };
   };
@@ -152,6 +141,18 @@ in
           pager = "delta --paging=never --hyperlinks-file-link-format=\"lazygit-edit://{path}:{line}\"";
         };
       };
+    };
+  };
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+
+    options = {
+      navigate = true;
+      side-by-side = true;
+      line-numbers = true;
+      hyperlinks = true;
     };
   };
 }

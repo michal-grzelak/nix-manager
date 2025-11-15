@@ -4,7 +4,7 @@ nix-install:
 	bash ./nix-configuration/scripts/install.sh
 
 nix-upgrade:
-	sudo -i nix upgrade-nix
+	sudo determinate-nixd upgrade
 
 clean-force:
 	nix-collect-garbage -d
@@ -15,11 +15,10 @@ clean:
 	nix-store --optimise
 
 nix-update:
-	nix-channel --update
 	nix flake update --flake ./nix-configuration
 
 wsl:
-	home-manager switch --flake ./nix-configuration#wsl --show-trace --impure
+	nix run github:nix-community/home-manager -- switch --flake ./nix-configuration#wsl --show-trace --impure
 
 mac:
-	home-manager switch --flake ./nix-configuration#mac --show-trace --impure
+	nix run github:nix-community/home-manager -- switch --flake ./nix-configuration#mac --show-trace --impure
