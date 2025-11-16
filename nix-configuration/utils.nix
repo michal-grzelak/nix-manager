@@ -1,7 +1,6 @@
 {
   nixpkgs,
   lib,
-  definitions,
   ...
 }:
 let
@@ -17,10 +16,7 @@ let
         allowUnfree = true;
       };
     };
-
-  # import nixpkgs for current system
-  pkgsForCurrentSystem = { }: pkgsForSystem { inherit (definitions) system; };
 in
 {
-  inherit print pkgsForSystem pkgsForCurrentSystem;
+  inherit print pkgsForSystem;
 }

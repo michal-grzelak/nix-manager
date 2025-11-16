@@ -1,13 +1,15 @@
 {
   pkgs,
+  lib,
   common,
+  config,
   ...
 }:
 let
   inherit (common) definitions utils;
 in
 {
-  programs.fish = {
+  programs.fish = lib.mkIf (config.definitions.shellToUse == "fish") {
     interactiveShellInit = ''
       #  source batman (using batman plugin as man pager)
       batman --export-env | source

@@ -1,6 +1,8 @@
 {
   pkgs,
+  lib,
   common,
+  config,
   ...
 }:
 let
@@ -23,13 +25,11 @@ in
   home = {
     packages = with pkgs; [ mosh ];
 
-    shellAliases =
-      if definitions.profile == "wsl" then
-        {
-          ssh = "ssh.exe";
-          ssh-add = "ssh-add.exe";
-        }
-      else
-        { };
+    shellAliases = lib.mkMerge [
+      (lib.mkIf (config.definitions.isWsl) {
+        ssh = "ssh.exe";
+        ssh-add = "ssh-add.exe";
+      })
+    ];
   };
 }

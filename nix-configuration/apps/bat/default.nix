@@ -7,7 +7,7 @@ let
   inherit (common) definitions utils;
 in
 {
-  imports = [ ./shells/${definitions.shellToUse}.nix ];
+  imports = [ ./shells ];
 
   programs.bat = {
     enable = true;

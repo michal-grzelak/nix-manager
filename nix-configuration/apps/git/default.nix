@@ -2,12 +2,14 @@
   pkgs,
   common,
   lib,
+  config,
   ...
 }:
 let
-  inherit (common) definitions utils;
+  inherit (common) utils;
 in
 {
+
   programs.git = {
     enable = true;
 
@@ -19,14 +21,14 @@ in
     ];
 
     settings = {
-      core = {
-        editor = "code -n --wait";
-        excludesFile = "~/.gitignore";
-        whitespace = "-trailing-space";
-      }
-      //
-        # map windows ssh for WSL (1Password integration)
-        (lib.attrsets.optionalAttrs (definitions.profile == "wsl") { sshCommand = "ssh.exe"; });
+      core = lib.mkMerge [
+        {
+          editor = "code -n --wait";
+          excludesFile = "~/.gitignore";
+          whitespace = "-trailing-space";
+        }
+        (lib.mkIf (config.definitions.isWsl) { sshCommand = "ssh.exe"; })
+      ];
       push = {
         default = "simple";
         followTags = true;

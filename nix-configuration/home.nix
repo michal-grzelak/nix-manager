@@ -1,41 +1,53 @@
 {
   lib,
   common,
+  config,
+  profile,
   ...
 }:
 let
-  inherit (common) definitions utils;
+  inherit (common) utils constants;
 in
 {
-  programs.home-manager.enable = utils.print definitions true;
+  config = {
+    programs.home-manager.enable = utils.print config.definitions true;
 
-  home = {
-    # You can update Home Manager without changing this value. See
-    # the Home Manager release notes for a list of state version
-    # changes in each release.
-    stateVersion = "25.11";
-
-    username = definitions.username;
-    homeDirectory = definitions.homeDirectory;
-  };
-
-  nix = {
-    gc = {
-      automatic = true;
-      options = "--delete-older-than 30d";
-      dates = "weekly";
+    definitions = {
+      rootDir = "${config.definitions.homeDirectory}/nix-manager";
+      username = "grzekuu";
+      profile = profile;
+      isWsl = true;
     };
-  };
 
-  systemd =
-    { }
-    // lib.attrsets.optionalAttrs (definitions.isLinux == true) {
-      user = {
-        enable = true;
+    home = {
+      # You can update Home Manager without changing this value. See
+      # the Home Manager release notes for a list of state version
+      # changes in each release.
+      stateVersion = "25.11";
+
+      username = config.definitions.username;
+      homeDirectory = config.definitions.homeDirectory;
+    };
+
+    nix = {
+      gc = {
+        automatic = true;
+        options = "--delete-older-than 30d";
+        dates = "weekly";
       };
     };
 
-  xdg = {
-    enable = true;
+    systemd =
+      { }
+      // lib.attrsets.optionalAttrs (config.definitions.isLinux == true) {
+        user = {
+          enable = true;
+        };
+      };
+
+    xdg = {
+      enable = true;
+    };
   };
+
 }

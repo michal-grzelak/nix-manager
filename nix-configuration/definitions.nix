@@ -1,58 +1,95 @@
-{ lib, ... }:
-let
-  username = builtins.getEnv "USER";
-  homeDirectory = builtins.getEnv "HOME";
-  system = builtins.currentSystem;
-  rootDir = builtins.getEnv "PWD";
-  nixConfigDir = "${rootDir}/nix-configuration";
-
-  linuxArm = "aarch64-linux";
-  linuxPc = "x86_64-linux";
-  macArm = "aarch64-darwin";
-  macPc = "x86_64-darwin";
-
-  supportedSystems = [
-    linuxArm
-    linuxPc
-    macArm
-    macPc
-  ];
-
-  isArm = builtins.elem system [
-    linuxArm
-    macArm
-  ];
-  isPc = builtins.elem system [
-    linuxPc
-    macPc
-  ];
-  isLinux = builtins.elem system [
-    linuxArm
-    linuxPc
-  ];
-  isMac = builtins.elem system [
-    macArm
-    macPc
-  ];
-
-  # setup shell you want to use here
-  shellToUse = "fish";
-in
-# fail at unsupported system to avoid issues
-assert lib.asserts.assertOneOf "system" system supportedSystems;
 {
-  inherit
-    username
-    homeDirectory
-    system
-    rootDir
-    nixConfigDir
-    ;
-  inherit
-    isArm
-    isPc
-    isLinux
-    isMac
-    ;
-  inherit shellToUse;
+  lib,
+  config,
+  system,
+  common,
+  ...
+}:
+let
+  cfg = config.definitions;
+  inherit (common) constants;
+in
+assert lib.asserts.assertOneOf "system" system constants.supportedSystems;
+{
+  options = {
+    definitions = {
+      isArm = lib.mkEnableOption "isArm";
+
+      isPc = lib.mkEnableOption "isPc";
+
+      isLinux = lib.mkEnableOption "isLinux";
+
+      isMac = lib.mkEnableOption "isMac";
+
+      isWsl = lib.mkEnableOption "isWsl";
+
+      system = lib.mkOption {
+        type = lib.types.enum constants.supportedSystems;
+        description = "Host system identifier.";
+      };
+
+      shellToUse = lib.mkOption {
+        type = lib.types.enum [
+          "fish"
+          "zsh"
+          "bash"
+        ];
+        default = "fish";
+        description = "Preferred interactive shell to be used across configs (e.g., fish, zsh, bash).";
+      };
+
+      username = lib.mkOption {
+        type = lib.types.str;
+        description = "Username for the system.";
+      };
+
+      homeDirectory = lib.mkOption {
+        type = lib.types.str;
+        default = "/home/${config.definitions.username}";
+        description = "Home directory of the user.";
+      };
+
+      rootDir = lib.mkOption {
+        type = lib.types.str;
+        description = "Root directory of the system configuration.";
+      };
+
+      nixConfigDir = lib.mkOption {
+        type = lib.types.str;
+        default = "${config.definitions.rootDir}/nix-configuration";
+        description = "Path to the nix configuration directory.";
+      };
+
+      profile = lib.mkOption {
+        type = lib.types.str;
+        description = "Profile name for the user.";
+      };
+    };
+  };
+
+  config = {
+    definitions = {
+      isArm = builtins.elem system [
+        constants.systems.linuxArm
+        constants.systems.macArm
+      ];
+
+      isPc = builtins.elem system [
+        constants.systems.linuxPc
+        constants.systems.macPc
+      ];
+
+      isLinux = builtins.elem system [
+        constants.systems.linuxArm
+        constants.systems.linuxPc
+      ];
+
+      isMac = builtins.elem system [
+        constants.systems.macArm
+        constants.systems.macPc
+      ];
+
+      system = system;
+    };
+  };
 }

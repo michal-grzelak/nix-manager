@@ -21,30 +21,29 @@
       inherit (self) outputs;
       lib = nixpkgs.lib;
 
-      definitions = import ./definitions.nix { inherit lib; };
-      utils = import ./utils.nix { inherit lib nixpkgs definitions; };
+      constants = import ./constants.nix { inherit lib; };
+      utils = import ./utils.nix { inherit lib nixpkgs; };
       common = {
-        inherit definitions utils;
+        inherit utils constants;
       };
 
       configureHome =
-        { profile }:
+        { profile, system }:
         home-manager.lib.homeManagerConfiguration {
-          pkgs = utils.pkgsForCurrentSystem { };
+          pkgs = utils.pkgsForSystem { inherit system; };
 
           extraSpecialArgs = {
-            inherit inputs outputs;
-            common = (
-              lib.attrsets.recursiveUpdate common {
-                definitions = {
-                  inherit profile;
-                };
-              }
-            );
+            inherit
+              inputs
+              outputs
+              system
+              profile
+              common
+              ;
           };
 
           modules = [
-            ./base.nix
+            ./definitions.nix
             ./home.nix
             ./profiles/${profile}
           ];
@@ -52,8 +51,14 @@
     in
     {
       homeConfigurations = {
-        wsl = configureHome { profile = "wsl"; };
-        mac = configureHome { profile = "mac"; };
+        wsl = configureHome {
+          profile = "wsl";
+          system = constants.systems.linuxPc;
+        };
+        mac = configureHome {
+          profile = "mac";
+          system = constants.systems.macArm;
+        };
       };
     };
 }

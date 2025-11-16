@@ -7,8 +7,9 @@ let
   inherit (common) definitions utils;
 in
 {
+  imports = [ ./shells ];
+
   programs.tmux = {
     enable = true;
-    shell = "${definitions.homeDirectory}/.nix-profile/bin/${definitions.shellToUse}";
   };
 }
