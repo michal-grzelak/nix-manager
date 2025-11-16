@@ -4,11 +4,9 @@
   lib,
   config,
   ...
-}:
-let
-  inherit (common) definitions utils;
-in
-{
+}: let
+  inherit (common) utils;
+in {
   programs.tmux = lib.mkIf (config.definitions.shellToUse == "fish") {
     shell = "${pkgs.fish}/bin/fish";
   };

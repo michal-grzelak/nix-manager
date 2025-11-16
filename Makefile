@@ -1,4 +1,4 @@
-.PHONY: nix-install nix-upgrade clean-force clean nix-update wsl max
+.PHONY: nix-install nix-upgrade clean-force clean nix-update pc-windows max
 
 nix-install:
 	bash ./nix-configuration/scripts/install.sh
@@ -17,8 +17,8 @@ clean:
 nix-update:
 	nix flake update --flake ./nix-configuration
 
-wsl:
-	nix run github:nix-community/home-manager -- switch --flake ./nix-configuration#wsl --show-trace --impure
+pc-windows:
+	nix run github:nix-community/home-manager -- switch --flake ./nix-configuration#pc-windows --show-trace --impure
 
 mac:
 	nix run github:nix-community/home-manager -- switch --flake ./nix-configuration#mac --show-trace --impure

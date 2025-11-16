@@ -3,11 +3,9 @@
   common,
   lib,
   ...
-}:
-let
-  inherit (common) definitions utils;
-in
-{
+}: let
+  inherit (common) utils;
+in {
   programs.mise = {
     enable = true;
   };

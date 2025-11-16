@@ -4,11 +4,9 @@
   common,
   config,
   ...
-}:
-let
-  inherit (common) definitions utils;
-in
-{
+}: let
+  inherit (common) utils;
+in {
   programs.neovim = {
     enable = true;
 

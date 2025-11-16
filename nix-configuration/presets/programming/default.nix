@@ -2,10 +2,8 @@
   pkgs,
   common,
   ...
-}:
-let
-in
-{
+}: let
+in {
   imports = [
     ../../apps/dev-libs
     ../../apps/git

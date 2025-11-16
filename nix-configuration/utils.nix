@@ -2,21 +2,18 @@
   nixpkgs,
   lib,
   ...
-}:
-let
+}: let
   # print any value pretty formatted
-  print = val: builtins.trace (lib.generators.toPretty { } val);
+  print = val: builtins.trace (lib.generators.toPretty {} val);
 
   # import nixpkgs for given system
-  pkgsForSystem =
-    { system, ... }:
+  pkgsForSystem = {system, ...}:
     import nixpkgs {
       inherit system;
       config = {
         allowUnfree = true;
       };
     };
-in
-{
+in {
   inherit print pkgsForSystem;
 }

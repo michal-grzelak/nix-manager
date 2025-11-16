@@ -4,12 +4,9 @@
   lib,
   config,
   ...
-}:
-let
+}: let
   inherit (common) utils;
-in
-{
-
+in {
   programs.git = {
     enable = true;
 
@@ -27,7 +24,7 @@ in
           excludesFile = "~/.gitignore";
           whitespace = "-trailing-space";
         }
-        (lib.mkIf (config.definitions.isWsl) { sshCommand = "ssh.exe"; })
+        (lib.mkIf (config.definitions.isWsl) {sshCommand = "ssh.exe";})
       ];
       push = {
         default = "simple";

@@ -2,10 +2,8 @@
   pkgs,
   common,
   ...
-}:
-let
-in
-{
+}: let
+in {
   imports = [
     ../../apps/fonts
     ../../apps/shells

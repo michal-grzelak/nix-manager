@@ -2,10 +2,8 @@
   pkgs,
   common,
   ...
-}:
-let
-  inherit (common) definitions utils;
-in
-{
-  imports = [ ./fish.nix ];
+}: let
+  inherit (common) utils;
+in {
+  imports = [./fish.nix];
 }

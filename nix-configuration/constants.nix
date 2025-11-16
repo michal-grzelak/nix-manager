@@ -1,9 +1,10 @@
-{ lib, ... }:
-let
+{lib, ...}: let
   linuxArm = "aarch64-linux";
   linuxPc = "x86_64-linux";
   macArm = "aarch64-darwin";
   macPc = "x86_64-darwin";
+
+  stateVersion = "25.11";
 
   supportedSystems = [
     linuxArm
@@ -11,9 +12,7 @@ let
     macArm
     macPc
   ];
-
-in
-{
+in {
   systems = {
     inherit
       linuxArm
@@ -23,4 +22,6 @@ in
       ;
   };
   inherit supportedSystems;
+
+  inherit stateVersion;
 }

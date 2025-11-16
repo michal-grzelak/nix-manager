@@ -2,12 +2,15 @@
   pkgs,
   common,
   ...
-}:
-let
-  inherit (common) definitions utils;
-in
-{
+}: let
+  inherit (common) utils;
+in {
   home.packages = with pkgs; [
-    ngrok
+    # formatter
+    alejandra
+
+    # language servers
+    nil
+    nixd
   ];
 }

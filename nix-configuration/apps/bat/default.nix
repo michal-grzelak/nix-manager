@@ -2,12 +2,10 @@
   pkgs,
   common,
   ...
-}:
-let
-  inherit (common) definitions utils;
-in
-{
-  imports = [ ./shells ];
+}: let
+  inherit (common) utils;
+in {
+  imports = [./shells];
 
   programs.bat = {
     enable = true;

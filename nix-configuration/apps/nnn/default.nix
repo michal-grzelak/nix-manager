@@ -2,15 +2,13 @@
   pkgs,
   common,
   ...
-}:
-let
-  inherit (common) definitions utils;
-in
-{
+}: let
+  inherit (common) utils;
+in {
   programs.nnn = {
     enable = true;
 
-    package = pkgs.nnn.override ({ withNerdIcons = true; });
+    package = pkgs.nnn.override {withNerdIcons = true;};
 
     plugins = {
       src =

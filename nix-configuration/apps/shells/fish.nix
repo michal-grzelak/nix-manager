@@ -4,11 +4,9 @@
   config,
   lib,
   ...
-}:
-let
-  inherit (common) definitions utils;
-in
-{
+}: let
+  inherit (common) utils;
+in {
   config = lib.mkIf (config.definitions.shellToUse == "fish") {
     programs.fish = {
       enable = true;
@@ -36,8 +34,9 @@ in
       ];
     };
 
-    programs.bash = {
-      enable = true;
+    programs.bash = lib.mkIf (config.definitions.isLinux
+      == true) {
+      enable = lib.mkForce true;
 
       initExtra = ''
         exec fish

@@ -4,26 +4,23 @@
   common,
   config,
   ...
-}:
-let
-  inherit (common) definitions utils;
-in
-{
+}: let
+  inherit (common) utils;
+in {
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    includes = [ "./ssh.config" ];
+    includes = ["./ssh.config"];
 
     matchBlocks = {
       "*" = {
         addKeysToAgent = "confirm";
       };
     };
-
   };
 
   home = {
-    packages = with pkgs; [ mosh ];
+    packages = with pkgs; [mosh];
 
     shellAliases = lib.mkMerge [
       (lib.mkIf (config.definitions.isWsl) {
