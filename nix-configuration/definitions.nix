@@ -57,6 +57,11 @@ in
           default = "${config.definitions.rootDir}/nix-configuration";
           description = "Path to the nix configuration directory.";
         };
+
+        stateVersion = lib.mkOption {
+          type = lib.types.str;
+          description = "Home Manager state version.";
+        };
       };
     };
 
@@ -83,6 +88,8 @@ in
         ];
 
         system = system;
+
+        stateVersion = "25.05";
       };
     };
   }

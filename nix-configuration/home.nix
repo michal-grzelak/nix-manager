@@ -5,14 +5,14 @@
   inputs,
   ...
 }: let
-  inherit (common) utils constants;
+  inherit (common) utils;
 
   flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
 in {
   programs.home-manager.enable = utils.print config.definitions true;
 
   home = {
-    stateVersion = constants.stateVersion;
+    stateVersion = config.definitions.stateVersion;
 
     username = config.definitions.username;
     homeDirectory = config.definitions.homeDirectory;

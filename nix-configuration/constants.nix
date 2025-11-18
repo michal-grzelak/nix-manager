@@ -4,8 +4,6 @@
   macArm = "aarch64-darwin";
   macPc = "x86_64-darwin";
 
-  stateVersion = "25.11";
-
   supportedSystems = [
     linuxArm
     linuxPc
@@ -22,6 +20,4 @@ in {
       ;
   };
   inherit supportedSystems;
-
-  inherit stateVersion;
 }
