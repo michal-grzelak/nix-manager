@@ -26,6 +26,9 @@ in {
         }
         (lib.mkIf (config.definitions.isWsl) {sshCommand = "ssh.exe";})
       ];
+      commit = {
+        gpgSign = true;
+      };
       push = {
         default = "simple";
         followTags = true;
@@ -78,6 +81,11 @@ in {
       };
       gpg = {
         format = "ssh";
+        ssh = lib.mkMerge [
+          (lib.mkIf (!config.definitions.isWsl && config.definitions.isLinux) {
+            program = "${lib.getExe' pkgs._1password-gui "op-ssh-sign"}";
+          })
+        ];
       };
       color = {
         ui = "auto";

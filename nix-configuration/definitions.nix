@@ -21,6 +21,8 @@ in
 
         isWsl = lib.mkEnableOption "isWsl";
 
+        isNixos = lib.mkEnableOption "isNixos";
+
         system = lib.mkOption {
           type = lib.types.enum constants.supportedSystems;
           description = "Host system identifier.";

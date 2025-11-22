@@ -1,4 +1,4 @@
-.PHONY: nix-install nix-upgrade clean-force clean nix-update pc-windows max
+.PHONY: nix-install nix-upgrade clean-force clean nix-update pc-windows mac laptop-gs75
 
 nix-install:
 	bash ./nix-configuration/scripts/install.sh
@@ -22,3 +22,6 @@ pc-windows:
 
 mac:
 	nix run github:nix-community/home-manager -- switch --flake ./nix-configuration#mac --show-trace --impure
+
+laptop-gs75:
+	sudo nixos-rebuild switch --flake ./nix-configuration#laptop-gs75 --show-trace --impure

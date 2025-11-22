@@ -12,6 +12,13 @@ in {
     enableDefaultConfig = false;
     includes = ["./ssh.config"];
 
+    extraConfig = lib.mkMerge [
+      (lib.mkIf (!config.definitions.isWsl && config.definitions.isLinux) ''
+        Host *
+            IdentityAgent ~/.1password/agent.sock
+      '')
+    ];
+
     matchBlocks = {
       "*" = {
         addKeysToAgent = "confirm";

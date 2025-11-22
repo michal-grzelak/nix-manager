@@ -47,15 +47,65 @@
           ./hosts/${host}/home.nix
         ];
       };
+
+    configureNixos = {
+      host,
+      system,
+    }:
+      lib.nixosSystem {
+        specialArgs = {
+          inherit
+            inputs
+            outputs
+            system
+            common
+            ;
+        };
+
+        modules = [
+          ./definitions.nix
+          ./hosts/${host}/configuration.nix
+          home-manager.nixosModules.home-manager
+          ({config, ...}: {
+            home-manager = {
+              useGlobalPkgs = lib.mkDefault true;
+              useUserPackages = lib.mkDefault true;
+
+              extraSpecialArgs = {
+                inherit
+                  inputs
+                  outputs
+                  system
+                  common
+                  ;
+              };
+
+              users.${config.definitions.username} = lib.mkMerge [
+                ./definitions.nix
+                ./home.nix
+                ./hosts/${host}/home.nix
+              ];
+            };
+          })
+        ];
+      };
   in {
     homeConfigurations = {
       pc-windows = configureHome {
         host = "pc-windows";
         system = constants.systems.linuxPc;
       };
+
       mac = configureHome {
         host = "mac";
         system = constants.systems.macArm;
+      };
+    };
+
+    nixosConfigurations = {
+      laptop-gs75 = configureNixos {
+        host = "laptop-gs75";
+        system = constants.systems.linuxPc;
       };
     };
   };

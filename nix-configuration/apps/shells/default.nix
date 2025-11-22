@@ -15,8 +15,12 @@ in {
     == true) {
     enable = lib.mkDefault true;
 
-    initExtra = lib.mkBefore ''
-      source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-    '';
+    initExtra = lib.mkMerge [
+      (lib.mkIf
+        (!config.definitions.isNixos)
+        (lib.mkBefore ''
+          source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+        ''))
+    ];
   };
 }
