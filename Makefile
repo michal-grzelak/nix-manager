@@ -25,3 +25,6 @@ mac:
 
 laptop-gs75:
 	sudo nixos-rebuild switch --flake ./nix-configuration#laptop-gs75 --show-trace --impure
+
+ardent-w11:
+	nix run github:nix-community/home-manager -- switch --flake ./nix-configuration#ardent-w11 --show-trace --impure

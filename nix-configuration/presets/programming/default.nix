@@ -8,6 +8,7 @@ in {
     ../../apps/dev-libs
     ../../apps/git
     ../../apps/mise
+    ../../apps/uv
     ../../apps/neovim
     ../../apps/gh
     ../../apps/mongo-tools

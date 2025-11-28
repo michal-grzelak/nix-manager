@@ -107,6 +107,11 @@
         host = "mac";
         system = constants.systems.macArm;
       };
+
+      ardent-w11 = configureHome {
+        host = "ardent-w11";
+        system = constants.systems.linuxPc;
+      };
     };
 
     nixosConfigurations = {
