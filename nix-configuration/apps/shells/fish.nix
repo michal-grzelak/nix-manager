@@ -34,13 +34,13 @@ in {
       ];
     };
 
-    programs.bash = lib.mkIf (config.definitions.isLinux
-      == true) {
-      enable = lib.mkForce true;
+    # programs.bash = lib.mkIf (config.definitions.isLinux
+    #   == true) {
+    #   enable = lib.mkForce true;
 
-      initExtra = ''
-        exec fish
-      '';
-    };
+    #   initExtra = ''
+    #     exec fish
+    #   '';
+    # };
   };
 }
