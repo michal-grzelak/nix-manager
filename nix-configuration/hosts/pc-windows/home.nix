@@ -8,7 +8,7 @@
 in {
   config = {
     definitions = {
-      rootDir = "${config.definitions.homeDirectory}/nix-manager";
+      rootDir = "${config.definitions.homeDirectory}/dev/system-manager";
       username = "grzekuu";
       isWsl = true;
     };
