@@ -11,6 +11,7 @@ in {
       rootDir = "${config.definitions.homeDirectory}/dev/system-manager";
       username = "grzekuu";
       isWsl = true;
+      homeStateVersion = "25.11";
     };
   };
 

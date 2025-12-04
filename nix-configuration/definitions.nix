@@ -60,9 +60,16 @@ in
           description = "Path to the nix configuration directory.";
         };
 
-        stateVersion = lib.mkOption {
+        homeStateVersion = lib.mkOption {
           type = lib.types.str;
+          default = "";
           description = "Home Manager state version.";
+        };
+
+        nixosStateVersion = lib.mkOption {
+          type = lib.types.str;
+          default = "";
+          description = "NixOS state version.";
         };
       };
     };
@@ -90,8 +97,6 @@ in
         ];
 
         system = system;
-
-        stateVersion = "25.05";
       };
     };
   }

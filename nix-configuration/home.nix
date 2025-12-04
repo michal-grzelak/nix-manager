@@ -12,7 +12,7 @@ in {
   programs.home-manager.enable = utils.print config.definitions true;
 
   home = {
-    stateVersion = config.definitions.stateVersion;
+    stateVersion = config.definitions.homeStateVersion;
 
     username = config.definitions.username;
     homeDirectory = config.definitions.homeDirectory;

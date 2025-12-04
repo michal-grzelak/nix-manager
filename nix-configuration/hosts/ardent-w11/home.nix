@@ -11,6 +11,7 @@ in {
       rootDir = "${config.definitions.homeDirectory}/dev/nix-manager";
       username = "grzelu";
       isWsl = true;
+      homeStateVersion = "25.11";
     };
   };
 

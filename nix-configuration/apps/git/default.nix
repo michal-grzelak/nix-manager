@@ -45,7 +45,6 @@ in {
         autoStash = true;
       };
       diff = {
-        tool = "delta";
         colorMoved = "default";
       };
       difftool = {
@@ -53,6 +52,9 @@ in {
         code = {
           cmd = "code -n --wait --diff $LOCAL $REMOTE";
         };
+      };
+      pager = {
+        difftool = false;
       };
       mergetool = {
         trustExitCode = true;
@@ -140,13 +142,18 @@ in {
       gui = {
         showFileIcons = true;
         nerdFontsVersion = "3";
-        windowSize = "half";
+        screenMode = "normal";
       };
       git = {
-        paging = {
-          colorArg = "always";
-          pager = "delta --paging=never --hyperlinks-file-link-format=\"lazygit-edit://{path}:{line}\"";
-        };
+        pagers = [
+          # {
+          #   useExternalDiffGitConfig = true;
+          # }
+          {
+            pager = "delta --paging=never --hyperlinks-file-link-format=\"lazygit-edit://{path}:{line}\"";
+            colorArg = "always";
+          }
+        ];
       };
     };
   };
@@ -162,4 +169,13 @@ in {
       hyperlinks = true;
     };
   };
+
+  # programs.difftastic = {
+  #   enable = true;
+  #   options = {color = "always";};
+  #   git = {
+  #     enable = true;
+  #     diffToolMode = true;
+  #   };
+  # };
 }
