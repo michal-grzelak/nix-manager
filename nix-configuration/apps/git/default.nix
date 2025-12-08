@@ -146,12 +146,8 @@ in {
       };
       git = {
         pagers = [
-          # {
-          #   useExternalDiffGitConfig = true;
-          # }
           {
-            pager = "delta --paging=never --hyperlinks-file-link-format=\"lazygit-edit://{path}:{line}\"";
-            colorArg = "always";
+            useExternalDiffGitConfig = true;
           }
         ];
       };
@@ -160,7 +156,7 @@ in {
 
   programs.delta = {
     enable = true;
-    enableGitIntegration = true;
+    enableGitIntegration = false;
 
     options = {
       navigate = true;
@@ -170,12 +166,12 @@ in {
     };
   };
 
-  # programs.difftastic = {
-  #   enable = true;
-  #   options = {color = "always";};
-  #   git = {
-  #     enable = true;
-  #     diffToolMode = true;
-  #   };
-  # };
+  programs.difftastic = {
+    enable = true;
+    options = {color = "always";};
+    git = {
+      enable = true;
+      diffToolMode = true;
+    };
+  };
 }
