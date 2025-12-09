@@ -16,6 +16,8 @@ in {
 
     username = config.definitions.username;
     homeDirectory = config.definitions.homeDirectory;
+
+    sessionPath = ["$HOME/.local/bin"];
   };
 
   nix = {
